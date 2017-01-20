@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>XHR Forms</title>
+    <meta charset="utf-8" />
+    <style>
+        html, body { height: 100%; margin: 0; padding: 0; font-size: 1.5rem; font-family: sans-serif; color: #6b6b6b; }
+        form { width: 40%; margin: auto; padding-top: 1.5rem; }
+        label { display: block; }
+        input { border: 1px solid #6b6b6b; border-radius: 3px; width: 100%; height: 2rem; font-size: inherit; padding: 0 .5rem; }
+        input:first-of-type { margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <form id="login">
+        <label for="username">Username</label><input id="username" />
+        <label for="password">Password</label><input type="password" id="password" />
+        <button type="submit">Login</button>
+    </form>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var form = document.getElementById('login');
+
+            form.addEventListener('submit', function (event) {
+                //var xhr = new XMLHttpRequest(),
+                //    model = {
+                //        username: document.getElementById('username').value,
+                //        password: document.getElementById('password').value
+                //    };
+
+                //xhr.open('POST', '/chapter9/form');
+                //xhr.send(JSON.stringify(model));
+
+                //event.preventDefault();
+                var xhr = new XMLHttpRequest(),
+                    formData = new FormData();
+
+                formData.append('username', document.getElementById('username').value);
+                formData.append('password', document.getElementById('password').value);
+
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        console.log(xhr.response);
+                    }
+                };
+
+                xhr.open('POST', '/signin');
+                xhr.send(formData);
+
+                event.preventDefault();
+            });
+
+        }());
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery AJAX</title>
+    <meta charset="utf-8" />
+</head>
+<body ng-app="example">
+    <form ng-controller="login_controller">
+        <label for="username">Username</label><input id="username" ng-model="user.name" />
+        <label for="password">Password</label><input type="password" id="password" ng-model="user.password" />
+        <button type="submit" ng-click="submit_user()">Login</button>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script>
+        (function () {
+            'use strict';
+
+            angular.module('example', []).controller('login_controller', ['$scope', '$http', function ($scope, $http) {
+                $scope.user = {};
+
+                $scope.submit_user = function () {
+                    $http.post('/signin', $scope.user).then(function (response) {
+                        console.log(response);
+                    });
+                };
+            }]);
+
+        }());
+    </script>
+</body>
+</html>

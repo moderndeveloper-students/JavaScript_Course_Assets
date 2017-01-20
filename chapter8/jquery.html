@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery AJAX</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <form id="login">
+        <label for="username">Username</label><input id="username" />
+        <label for="password">Password</label><input type="password" id="password" />
+        <button type="submit">Login</button>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        (function () {
+            'use strict';
+
+            $('#login').on('submit', function (event) {
+                var $inputs = $(this).find('input'),
+                    formData = new FormData();
+
+                $inputs.each(function (index, input) {
+                    formData.append(input.id, input.value);
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/signin',
+                    data: formData,
+                    processData: false,
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
+
+                event.preventDefault();
+            });
+
+        }());
+    </script>
+</body>
+</html>
