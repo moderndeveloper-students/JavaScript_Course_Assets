@@ -20,12 +20,6 @@ gulp.task('connect', function () {
                       '/get_request': __dirname + '/chapter8/getresponse.json'
                   };
                   let match = false;
-                  let destination = __dirname + '/uploadedFiles';
-
-                  if (!fs.existsSync(destination)) {
-                      // create upload directory if doesn't exist
-                      fs.mkdirSync(destination, 0777);
-                  }
 
                   function respond(jsonFileUrl) {
                       // set json response header
@@ -44,7 +38,7 @@ gulp.task('connect', function () {
                       let busboy = new Busboy({ headers: req.headers });
 
                       busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
-                          let destinationFile = path.join(destination, '/', filename);
+                          let destinationFile = path.join(__dirname + '/uploadedFiles', '/', filename);
 
                           if (!fs.existsSync(destinationFile)) {
                               // create uploaded file in filesystem if it doesn't exist
@@ -86,4 +80,12 @@ gulp.task('setup', function () {
         if (err) return console.log(err);
         console.log('Test upload file created');
     });
+
+    // create uploads directory
+    let destination = __dirname + '/uploadedFiles';
+    if (!fs.existsSync(destination)) {
+        // create upload directory if doesn't exist
+        fs.mkdirSync(destination, 0777);
+        console.log('Upload directory created');
+    }
 });
