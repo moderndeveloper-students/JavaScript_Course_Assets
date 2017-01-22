@@ -40,14 +40,13 @@ gulp.task('connect', function () {
                       busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
                           let destinationFile = path.join(__dirname + '/uploadedFiles', '/', filename);
 
-                          if (!fs.existsSync(destinationFile)) {
-                              // create uploaded file in filesystem if it doesn't exist
-                              file.pipe(fs.createWriteStream(destinationFile));
-                          } else {
-                              // return response if file already exists
-                              match = true;
-                              respond(__dirname + '/chapter8/uploadresponse.json');
+                          if (fs.existsSync(destinationFile)) {
+                              // delete file if it exists
+                              fs.unlinkSync(destinationFile);
                           }
+
+                          // create uploaded file in filesystem
+                          file.pipe(fs.createWriteStream(destinationFile));
                       });
 
                       busboy.on('finish', function () {
