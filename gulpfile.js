@@ -1,4 +1,5 @@
-﻿var gulp = require('gulp'),
+'use strict';﻿
+var gulp = require('gulp'),
     connect = require('gulp-connect'),
     jsonfile = require('jsonfile'),
     Busboy = require('busboy'),
