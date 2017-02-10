@@ -85,7 +85,7 @@ gulp.task('setup', function () {
     let destination = __dirname + '/uploadedFiles';
     if (!fs.existsSync(destination)) {
         // create upload directory if doesn't exist
-        fs.mkdirSync(destination, 0777);
+        fs.mkdirSync(destination, 0o0777);
         console.log('Upload directory created');
     }
 });
