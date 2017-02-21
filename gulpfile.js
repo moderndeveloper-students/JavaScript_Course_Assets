@@ -19,6 +19,7 @@ gulp.task('connect', function () {
                       '/response.json': __dirname + '/chapter8/response.json',
                       '/signin': __dirname + '/chapter8/loginresponse.json',
                       '/get_request': __dirname + '/chapter8/getresponse.json',
+                      '/get_request?test_data': __dirname + '/chapter8/getresponse.json',
                       '/create_account': __dirname + '/chapter8/createaccount.json'
                   };
                   let match = false;
