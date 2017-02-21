@@ -30,7 +30,7 @@ gulp.task('connect', function () {
                       jsonfile.readFile(jsonFileUrl, function (err, obj) {
                           if (err) { console.log(err); }
 
-                          res.writeHead(200, { 'Connection': 'close' });
+                          res.writeHead(200, { 'Connection': 'close', 'Access-Control-Allow-Origin': '*' });
 
                           // stringify json from .json file
                           res.end(JSON.stringify(obj));
