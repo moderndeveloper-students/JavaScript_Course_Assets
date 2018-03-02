@@ -1,3 +1,5 @@
+### Note: this repository has been depreciated by a [universal course asserts](https://github.com/moderndeveloper-students/Course-Assets) alternative.
+
 # Building High Performance JavaScript Web Applications - Course Examples
 
 This repository contains a directory for each chapter in the course containing all of the examples from that chapter, which you can run on your local computer and experiment with as you work your way through the course material.
